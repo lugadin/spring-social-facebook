@@ -14,6 +14,7 @@ buildscript {
         classpath 'io.spring.gradle:spring-io-plugin:0.0.6.RELEASE'
         // https://mvnrepository.com/artifact/commons-logging/commons-logging
         classpath 'commons-logging:commons-logging:1.1.3'
+        classpath 'com.fasterxml.jackson.core:jackson-core:2.10.0'
 
     }
 }
