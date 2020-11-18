@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url 'https://repo.spring.io/release' }
+        maven { url 'https://repo.spring.io/plugins-release' }
         maven { url 'https://repo.spring.io/snapshot' }
         maven { url 'http://repo.spring.io/milestone' }
         jcenter()
@@ -8,7 +8,7 @@ buildscript {
     dependencies {
         classpath 'org.springframework.build.gradle:docbook-reference-plugin:0.2.8'
         classpath 'me.champeau.gradle:gradle-javadoc-hotfix-plugin:0.1'
-        classpath('org.asciidoctor:asciidoctor-gradle-plugin:0.7.0')
+        classpath('org.asciidoctor:asciidoctor-gradle-plugin:1.5.0')
         classpath('org.asciidoctor:asciidoctor-java-integration:0.1.4')
         classpath 'io.spring.gradle:spring-io-plugin:0.0.6.RELEASE'
     }
@@ -266,18 +266,18 @@ configure(rootProject) {
         dependsOn subprojects*.tasks*.matching { task -> task.name == 'assemble' || task.name.endsWith('Zip') || task.name.endsWith('generatePom') }
         classifier = 'dist'
 
-        evaluationDependsOn(':docs')
-        evaluationDependsOn(':docs:manual')
+//        evaluationDependsOn(':docs')
+//        evaluationDependsOn(':docs:manual')
 
         def zipRootDir = "${project.name}-$version"
         into(zipRootDir) {
             from(rootDir) {
                 include '*.txt'
             }
-            into('docs') {
-                with(project(':docs').apiSpec)
-                with(project(':docs:manual').spec)
-            }
+//            into('docs') {
+//                with(project(':docs').apiSpec)
+//                with(project(':docs:manual').spec)
+//            }
             into('dist') {
                 from coreModuleProjects.collect {project -> project.libsDir }
             }
@@ -286,8 +286,8 @@ configure(rootProject) {
 
     artifacts {
         archives dist
-        archives project(':docs').docsZip
-        archives project(':docs').schemaZip
+//        archives project(':docs').docsZip
+//        archives project(':docs').schemaZip
     }
 
     task wrapper(type: Wrapper) {
